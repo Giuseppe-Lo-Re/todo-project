@@ -32,7 +32,7 @@ class TodoController extends Controller
      */
     public function create()
     {
-        //
+         return view('admin.todos.create');
     }
 
     /**
