@@ -9,6 +9,7 @@
                         <div class="card-body">
                             <div class="list-wrapper">
                                 @foreach ($todos as $todo)
+                                
                                     {{-- Single To do --}}
                                     <ul class="d-flex flex-column-reverse todo-list">
                                         <li>

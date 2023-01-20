@@ -16,6 +16,7 @@
 @endif
 
 <form action="{{ route('admin.todos.store') }}" method="post">
+
     {{-- Cross-Site Request Forgery --}}
     @csrf
     @method('POST')
@@ -23,13 +24,13 @@
     {{-- Position order --}}
     <div class="mb-3 add-items">
         <label for="order_position" class="pb-2">Priorità</label>
-        <input type="number" class="form-control todo-list-input" id='order_position' name='order_position'>
+        <input type="number" class="form-control todo-list-input" id='order_position' name='order_position' value="{{ old('order_position') }}">
     </div>
 
     {{-- Description --}}
     <div class="add-items"> 
         <label for="description" class="form-label">Descrizione</label>
-        <input type="text" class="form-control todo-list-input" placeholder="Cos'hai da fare?" id='description' name='description'> 
+        <input type="text" class="form-control todo-list-input" placeholder="Cos'hai da fare?" id='description' name='description' value="{{ old('description') }}"> 
     </div>
     
     {{-- Submit --}}
