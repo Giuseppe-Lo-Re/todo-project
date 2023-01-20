@@ -20,18 +20,19 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary flex-md-nowrap p-4 d-flex justify-content-between">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary flex-md-nowrap d-flex justify-content-between">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0">
-            <span class="text-warning p-1">T</span>
-            <span class="text-success p-1">O</span>
-            <span class="text-danger p-1">D</span>
-            <span class="p-1">O</span>
+            <span class="text-warning p-1 display-6">T</span>
+            <span class="text-success p-1 display-6">O</span>
+            <span class="text-danger p-1 display-6">D</span>
+            <span class="p-1 display-6">O</span>
         </a>
-        <ul class="navbar-nav px-3 ml-auto">
+        <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-                                 document.getElementById('logout-form').submit();">
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();"
+                >
                     Logout
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -47,17 +48,17 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link active text-light" href="{{ route('admin.home') }}">
-                                Dashboard
+                                🏠 Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active text-light" href="{{ route('admin.todos.index') }}">
-                                To-do List
+                                📒 Lista
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active text-light" href="{{ route('admin.todos.create') }}">
-                                Crea To-do
+                                🪄 Crea 
                             </a>
                         </li>
                     </ul>

@@ -135,13 +135,19 @@ class TodoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Find the todo to delete through id
+        $post_to_delete = Todo::findOrFail($id);
+
+        // Delete the todo to delete
+        $post_to_delete->delete();
+
+        // After Delete, redirect to the index page
+        return redirect()->route('admin.todos.index');
     }
 
     // Define validation rules
     protected function getValidationRules() {
         return [
-            'position_order' => 'required|max:50',
             'description' => 'required|max:60000',
         ];
     }

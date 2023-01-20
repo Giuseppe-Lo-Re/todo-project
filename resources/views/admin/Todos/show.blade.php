@@ -11,8 +11,23 @@
     {{-- Update at --}}
     <div>Aggiornato il: {{ $todo->updated_at }}</div>
 
-    {{-- Edit button --}}
+    {{-- Buttons container --}}
     <div class="d-flex justify-content-center">
-        <a class="btn btn-warning mt-3" href="{{ route('admin.todos.edit', ['todo' => $todo->id]) }}">Modifica</a>
+
+        {{-- Edit --}}
+        <a class="btn btn-warning mt-3 m-3" href="{{ route('admin.todos.edit', ['todo' => $todo->id]) }}">🔧 Modifica</a>
+
+        {{-- Delete --}}
+        <form action=" {{ route('admin.todos.destroy', ['todo' => $todo->id]) }}" method="post">
+
+            {{-- Cross-Site Request Forgery --}}
+            @csrf
+
+            {{-- Method --}}
+            @method('DELETE')
+
+            <input class="btn btn-danger mt-3" type="submit" value="❌ Elimina" onClick="return confirm('Stai per eliminare il Todo...sei sicurə?')">
+        </form>
     </div>
+ 
 @endsection

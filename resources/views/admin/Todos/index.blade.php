@@ -7,21 +7,21 @@
                 <div class="col-md-12">
                     <div class="card px-3">
                         <div class="card-body">
-                            <div class="list-wrapper">
+                            <div>
                                 @foreach ($todos as $todo)
-                                
+
                                     {{-- Single To do --}}
-                                    <ul class="d-flex flex-column-reverse todo-list">
+                                    <ul class="d-flex flex-column-reverse">
                                         <li>
                                             <div class="d-flex justify-content-between">
 
-                                                {{-- To do description --}}
-                                                <div class="form-check"> <label class="form-check-label">
+                                                {{-- Description --}}
+                                                <div class="h5">
                                                     {{ $todo->description }}
                                                 </div>
 
-                                                {{-- Action button --}}
-                                                <a type="button" class="btn btn-primary" href="{{ route('admin.todos.show', ['todo' => $todo->id]) }}">Info</a>
+                                                {{-- Actions button --}}
+                                                <a type="button" class="btn btn-outline-light" href="{{ route('admin.todos.show', ['todo' => $todo->id]) }}">⚙️</a>
                                             </div>
                                         </li>
                                     </ul>

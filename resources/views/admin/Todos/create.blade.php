@@ -35,8 +35,7 @@
     
     {{-- Submit --}}
     <div class="d-flex justify-content-center">
-        <input type="submit" value="Salva" class="add btn btn-success font-weight-bold todo-list-add-btn mt-3">
+        <input type="submit" value="🔐 Salva" class="add btn btn-success font-weight-bold todo-list-add-btn mt-3">
     </div>
 </form>
-
 @endsection
