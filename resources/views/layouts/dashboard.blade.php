@@ -20,8 +20,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark flex-md-nowrap p-0 d-flex justify-content-between">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Todo</a>
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary flex-md-nowrap p-4 d-flex justify-content-between">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0">T O D O</a>
         <ul class="navbar-nav px-3 ml-auto">
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"
@@ -47,7 +47,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" href="{{ route('admin.todos.index') }}">
-                                Todo List
+                                To-do List
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ route('admin.todos.create') }}">
+                                Crea To-do
                             </a>
                         </li>
                     </ul>

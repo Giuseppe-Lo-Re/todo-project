@@ -21,7 +21,7 @@
                                                 </div>
 
                                                 {{-- Action button --}}
-                                                <a type="button" class="btn btn-primary" href="{{ route('admin.todos.show', ['todo' => $todo->id]) }}">Details</a>
+                                                <a type="button" class="btn btn-primary" href="{{ route('admin.todos.show', ['todo' => $todo->id]) }}">Info</a>
                                             </div>
                                         </li>
                                     </ul>

@@ -43,7 +43,12 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $form_data = $request->all();
+        $new_todo = new Todo();
+        $new_todo->fill($form_data);
+        $new_todo->save();
+        
+        return redirect()->route('admin.todos.show', ['todo' => $new_todo->id]);
     }
 
     /**
