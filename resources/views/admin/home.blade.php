@@ -1,7 +1,9 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <h1>Area privata</h1>
+    {{-- Title --}}
+    <h2>Bentornato {{ $user->name }}!</h2>
 
-    <div>Benvenuto {{ $user->name }}!</div>
+    {{-- Welcome text --}}
+    <h3>Cosa facciamo oggi?</h3>
 @endsection
