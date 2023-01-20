@@ -4,6 +4,17 @@
 
 <h2 class="text-center p-3">Crea un nuovo To-do</h2>
 
+{{-- Display Validation Errors --}}
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 <form action="{{ route('admin.todos.store') }}" method="post">
     {{-- Cross-Site Request Forgery --}}
     @csrf

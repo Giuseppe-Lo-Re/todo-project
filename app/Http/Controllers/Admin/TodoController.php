@@ -44,12 +44,18 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
+        // Data validation
+        $request->validate($this->getValidationRules());
+
         // Collect all data from form
         $form_data = $request->all();
+
         // Create a new todo 
         $new_todo = new Todo();
+
         // Fill all data together from form(added fillable in Todo Model)
         $new_todo->fill($form_data);
+
         // Save new todo
         $new_todo->save();
 
@@ -84,6 +90,7 @@ class TodoController extends Controller
      */
     public function edit($id)
     {
+
         // Find todo from id
         $todo = Todo::findOrFail($id); 
 
@@ -104,6 +111,9 @@ class TodoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Data validation
+        $request->validate($this->getValidationRules());
+
         // Collect all data from form
         $form_data = $request->all();
         
@@ -112,6 +122,9 @@ class TodoController extends Controller
 
         // Update the todo modified
         $todo_to_update->update($form_data);
+
+        // After update, redirect to the show page
+        return redirect()->route('admin.todos.show', ['todo' => $todo_to_update->id]);
     }
 
     /**
@@ -123,5 +136,13 @@ class TodoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // Define validation rules
+    protected function getValidationRules() {
+        return [
+            'position_order' => 'required|max:50',
+            'description' => 'required|max:60000',
+        ];
     }
 }

@@ -7,7 +7,6 @@
                 <div class="col-md-12">
                     <div class="card px-3">
                         <div class="card-body">
-                            <h2 class="card-title text-center text-success">Todo list</h2>
                             <div class="list-wrapper">
                                 @foreach ($todos as $todo)
                                     {{-- Single To do --}}
