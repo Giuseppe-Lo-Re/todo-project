@@ -13,7 +13,16 @@
                                     {{-- Single To do --}}
                                     <ul class="d-flex flex-column-reverse todo-list">
                                         <li>
-                                            <div class="form-check"> <label class="form-check-label"> <input class="checkbox" type="checkbox">{{ $todo->description }}<i class="input-helper"></i></label> </div> <i class="remove mdi mdi-close-circle-outline"></i>
+                                            <div class="d-flex justify-content-between">
+
+                                                {{-- To do description --}}
+                                                <div class="form-check"> <label class="form-check-label">
+                                                    {{ $todo->description }}
+                                                </div>
+
+                                                {{-- Action button --}}
+                                                <a type="button" class="btn btn-primary" href="{{ route('admin.todos.show', ['todo' => $todo->id]) }}">Details</a>
+                                            </div>
                                         </li>
                                     </ul>
                                 @endforeach

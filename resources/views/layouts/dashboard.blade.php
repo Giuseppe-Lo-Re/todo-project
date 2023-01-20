@@ -41,8 +41,13 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="">
+                            <a class="nav-link active" href="{{ route('admin.home') }}">
                                 Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ route('admin.todos.index') }}">
+                                Todo List
                             </a>
                         </li>
                     </ul>
