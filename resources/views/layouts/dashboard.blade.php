@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>📌 T O D O</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -21,7 +21,9 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-primary flex-md-nowrap d-flex justify-content-between">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0">
+
+        {{-- Logo  --}}
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0 px-2">
             <span class="text-warning p-1 display-6">T</span>
             <span class="text-success p-1 display-6">O</span>
             <span class="text-danger p-1 display-6">D</span>
@@ -43,6 +45,8 @@
     </nav>
     <div class="container-fluid">
         <div class="row">
+
+            {{-- Side Nav --}}
             <nav class="col-md-2 d-none d-md-block bg-primary sidebar py-4 ">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
@@ -62,7 +66,6 @@
                             </a>
                         </li>
                     </ul>
-
                 </div>
             </nav>
 
