@@ -15,9 +15,10 @@ class TodoController extends Controller
      */
     public function index()
     {
-        // Print all todos from model
+        // Print all todos from Model
         $todos = Todo::all();
         
+        // Pass data to the view
         $data = [
             'todos' => $todos
         ];
@@ -32,7 +33,7 @@ class TodoController extends Controller
      */
     public function create()
     {
-         return view('admin.todos.create');
+        return view('admin.todos.create');
     }
 
     /**
@@ -43,11 +44,16 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
+        // Collect all data from form
         $form_data = $request->all();
+        // Create a new todo 
         $new_todo = new Todo();
+        // Fill all data together from form(added fillable in Todo Model)
         $new_todo->fill($form_data);
+        // Save new todo
         $new_todo->save();
-        
+
+        // After save, redirect to the show page
         return redirect()->route('admin.todos.show', ['todo' => $new_todo->id]);
     }
 
@@ -59,8 +65,10 @@ class TodoController extends Controller
      */
     public function show($id)
     {
-        $todo = Todo::find($id);
+        // Find todo from id
+        $todo = Todo::findOrFail($id);  
 
+        // Pass data to the view
         $data = [
             'todo' => $todo
         ];
@@ -76,7 +84,15 @@ class TodoController extends Controller
      */
     public function edit($id)
     {
-        //
+        // Find todo from id
+        $todo = Todo::findOrFail($id); 
+
+        // Pass data to the view
+        $data = [
+            'todo' => $todo
+        ];
+
+        return view('admin.todos.edit', $data);
     }
 
     /**
@@ -88,7 +104,14 @@ class TodoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Collect all data from form
+        $form_data = $request->all();
+        
+        // Find the todo to update through id
+        $todo_to_update = Todo::findOrFail($id);
+
+        // Update the todo modified
+        $todo_to_update->update($form_data);
     }
 
     /**
