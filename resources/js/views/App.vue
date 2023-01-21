@@ -1,8 +1,5 @@
 <template>
     <main>
-
-        <h1>Ciao sono stampato da Vuejs!</h1>
-
         <Todos />
     </main>
 </template>
