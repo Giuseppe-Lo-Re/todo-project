@@ -1,15 +1,16 @@
 @extends('layouts.dashboard')
 
 @section('content')
-
-    {{-- Description --}}
-    <h2>{{ $todo->description }}</h2>
-
-    {{-- Created at --}}
-    <div>Creato il: {{ $todo->created_at }}</div>
-
-    {{-- Update at --}}
-    <div>Aggiornato il: {{ $todo->updated_at }}</div>
+    <div class="text-center">
+        {{-- Description --}}
+        <h2>{{ $todo->description }}</h2>
+    
+        {{-- Created at --}}
+        <div>Creato il: {{ $todo->created_at }}</div>
+    
+        {{-- Update at --}}
+        <div>Aggiornato il: {{ $todo->updated_at }}</div>
+    </div>
 
     {{-- Buttons container --}}
     <div class="d-flex justify-content-center">

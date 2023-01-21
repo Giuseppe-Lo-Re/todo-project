@@ -13,14 +13,21 @@ class TodoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // Print all todos from Model
         $todos = Todo::all();
+
+        // Collect all the requests 
+        $request_info = $request->all();
+
+        // $show_deleted_message will be equal to 'deleted' if present, otherwise it will be equal to 'null'
+        $show_deleted_message = isset($request_info['deleted']) ? $request_info['deleted'] : null;
         
         // Pass data to the view
         $data = [
-            'todos' => $todos
+            'todos' => $todos,
+            'show_deleted_message' => $show_deleted_message
         ];
 
         return view('admin.todos.index', $data);
@@ -142,7 +149,7 @@ class TodoController extends Controller
         $post_to_delete->delete();
 
         // After Delete, redirect to the index page
-        return redirect()->route('admin.todos.index');
+        return redirect()->route('admin.todos.index', ['deleted' => 'yes']);
     }
 
     // Define validation rules
