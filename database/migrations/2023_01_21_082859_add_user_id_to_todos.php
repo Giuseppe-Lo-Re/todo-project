@@ -16,10 +16,15 @@ class AddUserIdToTodos extends Migration
         Schema::table('todos', function (Blueprint $table) {
 
             // Add user_id table
-            $table->unsignedBigInteger('user_id')->nullable(); 
+            $table->unsignedBigInteger('user_id')
+                  ->nullable()
+                  ->after('description'); 
 
             // Add relation
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('set null');
         });
     }
 
@@ -33,7 +38,7 @@ class AddUserIdToTodos extends Migration
         Schema::table('todos', function (Blueprint $table) {
             
             // Delete relation
-            $table->dropForeign('todos_user_id_foreign';)
+            $table->dropForeign('todos_user_id_foreign');
 
             // Delete user_id table
             $table->dropColumn('user_id');

@@ -8,6 +8,13 @@ class Todo extends Model
 {
     protected $fillable = [
         'order_position',
-        'description'
+        'description',
+        'user_id'
     ];
+
+    // Define relation type
+    public function user() {
+
+        return $this->belongsTo('App\User');
+    }
 }
