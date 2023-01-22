@@ -2121,13 +2121,18 @@ var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "text-right"
-  }, [_c("a", {
+    staticClass: "d-flex justify-content-between"
+  }, [_c("div", [_c("a", {
     staticClass: "btn btn-outline-primary btn-sm",
     attrs: {
       href: "/admin"
     }
-  }, [_vm._v("\n        Area privata\n      ")])]);
+  }, [_vm._v("\n          Area privata\n        ")])]), _vm._v(" "), _c("div", [_c("a", {
+    staticClass: "btn btn-outline-danger btn-sm",
+    attrs: {
+      href: "/logout"
+    }
+  }, [_vm._v("\n          Logout\n        ")])])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;

@@ -23,7 +23,7 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-primary flex-md-nowrap d-flex justify-content-between">
 
         {{-- Logo  --}}
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0 px-2">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0 px-2" href="/console">
             <span class="text-warning p-1 display-6">T</span>
             <span class="text-success p-1 display-6">O</span>
             <span class="text-danger p-1 display-6">D</span>

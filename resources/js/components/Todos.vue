@@ -4,10 +4,18 @@
   <div>
     <div>
     <div v-if="isUserLogged">
-      <div class="text-right">
-        <a class="btn btn-outline-primary btn-sm" href="/admin">
-          Area privata
-        </a>
+      <div class="d-flex justify-content-between">
+        <div>
+          <a class="btn btn-outline-primary btn-sm" href="/admin">
+            Area privata
+          </a>
+        </div>
+
+        <div>
+          <a class="btn btn-outline-danger btn-sm" href="/logout">
+            Logout
+          </a>
+        </div>
       </div>
 
         <!-- Title -->
