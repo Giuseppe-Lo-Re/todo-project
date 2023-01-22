@@ -18,7 +18,7 @@
 
           <div class="card-body d-flex justify-content-between">
             <!-- Description input -->
-            <input v-model="newTodoText" class="card-body" type="search" placeholder="Aggiungi un nuovo todo" aria-label="Aggiungi">
+            <input v-model="newTodo" class="card-body" type="search" placeholder="Aggiungi un nuovo todo" aria-label="Aggiungi">
 
             <!-- Add button -->
             <button class="btn btn-success btn-sm ml-2" type="submit">Aggiungi</button>
@@ -58,11 +58,12 @@
     data() {
       return {
         todoList: [],
-        newTodoText: ''
+        newTodo: ''
       }
     },
     methods: {
-      updateTodoList() {
+
+      updateTodoList(id) {
         axios.post('/api/save-todo-order', {
           todos: this.todoList
         })
@@ -74,20 +75,33 @@
         })
           console.log(this.todoList);
       },
+    
       addTodo() {
-        if (this.newTodoText.trim().length > 0) {
+        if (this.newTodo.trim().length > 0) {
           axios.post('/api/save-new-todo ', {
-            description: this.newTodoText,
+            description: this.newTodo,
           })
           .then(response => {
             this.todoList.push(response.data)
-            this.newTodoText = ''
+            this.newTodo = ''
           })
           .catch(error => {
             console.log(error)
           })
         }
+      },
+      
+      removeTodo() {
+        this.todoList = this.todoList.filter(todo => todo.id !== id)
+        axios.delete(`/api/todo/${id}`)
+          .then(response => {
+            console.log(response)
+          })
+          .catch(error => {
+            console.log(error)
+          })
       }
+
     },
     mounted() {
       axios.get('/api/todos')
