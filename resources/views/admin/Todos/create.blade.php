@@ -2,9 +2,10 @@
 
 @section('content')
 
+{{-- Title --}}
 <h2 class="text-center p-3">Crea</h2>
 
-{{-- Display Validation Errors --}}
+{{-- Display validation errors --}}
 @if ($errors->any())
 <div class="alert alert-danger">
     <ul>
@@ -15,10 +16,13 @@
 </div>
 @endif
 
+{{-- Form --}}
 <form action="{{ route('admin.todos.store') }}" method="post">
 
     {{-- Cross-Site Request Forgery --}}
     @csrf
+
+    {{-- Method --}}
     @method('POST')
 
     {{-- Description --}}

@@ -7,6 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    {{-- Title --}}
     <title>📌 T O D O</title>
 
     <!-- Fonts -->
@@ -22,13 +23,15 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-primary flex-md-nowrap d-flex justify-content-between">
 
-        {{-- Logo  --}}
+        {{-- Title --}}
         <a class="navbar-brand col-sm-3 col-md-2 mr-0 px-2" href="/console">
             <span class="text-warning p-1 display-4">T</span>
             <span class="text-success p-1 display-4">O</span>
             <span class="text-danger p-1 display-4">D</span>
             <span class="p-1 display-4">O</span>
         </a>
+
+        {{-- Logout  --}}
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"
@@ -52,19 +55,25 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
 
+                            {{-- Dashboard --}}
                             <a class="nav-link active text-light" href="{{ route('admin.home') }}">
                                 🏠 Dashboard
                             </a>
 
+                            {{-- Console --}}
                             <a class="nav-link active text-light" href="/console">
                                 🕹️ Console
                             </a>
                         </li>
+
+                        {{-- List --}}
                         <li class="nav-item">
                             <a class="nav-link active text-light" href="{{ route('admin.todos.index') }}">
                                 📒 Lista
                             </a>
                         </li>
+
+                        {{-- Create --}}
                         <li class="nav-item">
                             <a class="nav-link active text-light" href="{{ route('admin.todos.create') }}">
                                 🪄 Crea 
@@ -80,7 +89,7 @@
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- JS -->
     <script src="{{ asset('js/back.js') }}" defer></script> 
 </body>
 </html>

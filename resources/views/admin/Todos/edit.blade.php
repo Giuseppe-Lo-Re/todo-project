@@ -1,9 +1,11 @@
 @extends('layouts.dashboard')
 
 @section('content')
+
+    {{-- Title --}}
     <h2 class="text-center p-3">Modifica un To-do</h2> 
 
-    {{-- Display Validation Errors --}}
+    {{-- Display validation errors --}}
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -14,6 +16,7 @@
         </div>
     @endif
 
+    {{-- Form --}}
     <form action="{{ route('admin.todos.update', ['todo' => $todo->id]) }}" method="post">
 
         {{-- Cross-Site Request Forgery --}}

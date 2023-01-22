@@ -2,17 +2,22 @@
 
 @section('content')
     <div class="text-center">
+
         {{-- Description --}}
         <h2>{{ $todo->description }}</h2>
     
         {{-- Created at --}}
-        <div>Creato il: {{ $todo->created_at }}</div>
+        <div>
+            Creato il: {{ $todo->created_at }}
+        </div>
     
         {{-- Update at --}}
-        <div>Aggiornato il: {{ $todo->updated_at }}</div>
+        <div>
+            Aggiornato il: {{ $todo->updated_at }}
+        </div>
     </div>
 
-    {{-- Buttons container --}}
+    {{-- Edit/Delete buttons --}}
     <div class="d-flex justify-content-center">
 
         {{-- Edit --}}
@@ -27,8 +32,8 @@
             {{-- Method --}}
             @method('DELETE')
 
+            {{-- Input --}}
             <input class="btn btn-danger mt-3" type="submit" value="❌ Elimina" onClick="return confirm('Stai per eliminare il Todo...sei sicurə?')">
         </form>
     </div>
- 
 @endsection

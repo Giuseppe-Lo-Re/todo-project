@@ -25,7 +25,7 @@ Route::middleware('auth')
     Route::resource('todos', 'TodoController');
 });
 
-// For any route returns  view guest.home
+// For any route returns  view frontend page
 Route::get('{any?}', function () {
     return view('guest.home');
 })->where('any', '.*');

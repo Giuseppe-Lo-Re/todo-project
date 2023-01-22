@@ -29,7 +29,7 @@ Route::post('/save-new-todo', 'Api\TodoController@store');
 // Read Todo list
 Route::get('/todos', 'Api\TodoController@index'); 
 
-// Update Todo
+// Update Todo --> NOT IMPLEMENTED
 // Route::post('/todos/{id}', 'Api\TodoController@edit'); 
 
 // Update order position

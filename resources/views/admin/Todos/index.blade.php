@@ -1,6 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
+
     <div class="page-content page-container" id="page-content">
         <div class="padding">
             <div class="row container d-flex justify-content-center">
@@ -8,7 +9,6 @@
                     <div class="card px-3">
                         <div class="card-body">
                             <div>
-                                
                                 {{-- Alert confirm deleted message --}}
                                 @if ($show_deleted_message === 'yes')
                                 <div class="alert alert-success" role="alert">
@@ -16,9 +16,10 @@
                                 </div>
                                 @endif
 
+                                {{-- Foreach to print todos --}}
                                 @foreach ($todos as $todo)
                                     
-                                    {{-- Single To do --}}
+                                    {{-- Single Todo --}}
                                     <ul class="d-flex flex-column-reverse">
                                         <li>
                                             <div class="d-flex justify-content-between">
