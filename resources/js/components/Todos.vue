@@ -16,11 +16,13 @@
       <div class="mb-5">
         <form @submit.prevent="addTodo" class="form-inline my-2 my-lg-0">
 
-          <!-- Description input -->
-          <input v-model="newTodoText" class="form-control mr-sm-2" type="search" placeholder="Aggiungi un nuovo todo" aria-label="Aggiungi">
+          <div class="card-body d-flex justify-content-between">
+            <!-- Description input -->
+            <input v-model="newTodoText" class="card-body" type="search" placeholder="Aggiungi un nuovo todo" aria-label="Aggiungi">
 
-          <!-- Add button -->
-          <button class="btn btn-success btn-sm mt-3" type="submit">Aggiungi</button>
+            <!-- Add button -->
+            <button class="btn btn-success btn-sm ml-2" type="submit">Aggiungi</button>
+          </div>
         </form>
       </div>
   
@@ -46,38 +48,52 @@
 </template>
 
 <script>
-import draggable from 'vuedraggable'
-import axios from 'axios'
+  import draggable from 'vuedraggable'
+  import axios from 'axios'
 
-export default {
-  components: {
-    draggable
-  },
-  data() {
-    return {
-      todoList: [],
-      newTodoText: ''
-    }
-  },
-  methods: {
-    updateTodoList() {
-        
-      axios.post('/api/save-todo-order', {
+  export default {
+    components: {
+      draggable
+    },
+    data() {
+      return {
+        todoList: [],
+        newTodoText: ''
+      }
+    },
+    methods: {
+      updateTodoList() {
+        axios.post('/api/save-todo-order', {
           todos: this.todoList
-      })
-      .then(response => {
+        })
+        .then(response => {
           console.log(response)
-      })
-      .catch(error => {
+        })
+        .catch(error => {
           console.log(error)
-      })
-      console.log(this.todoList);
+        })
+          console.log(this.todoList);
+      },
+      addTodo() {
+        if (this.newTodoText.trim().length > 0) {
+          axios.post('/api/save-new-todo ', {
+            description: this.newTodoText,
+          })
+          .then(response => {
+            this.todoList.push(response.data)
+            this.newTodoText = ''
+          })
+          .catch(error => {
+            console.log(error)
+          })
+        }
+      }
+    },
+    mounted() {
+      axios.get('/api/todos')
+      .then((response) => {
+          this.todoList = response.data.results;
+      });
     }
-  },
-  mounted() {
-    axios.get('/api/todos')
-    .then((response) => {
-        this.todoList = response.data.results;
-    });
   }
-}
+  </script>
