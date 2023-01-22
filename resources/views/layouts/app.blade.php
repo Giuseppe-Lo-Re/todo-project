@@ -23,8 +23,11 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="navbar-brand col-sm-3 col-md-2 mr-0 px-2">
+                    <span class="text-warning p-1 display-6">T</span>
+                    <span class="text-success p-1 display-6">O</span>
+                    <span class="text-danger p-1 display-6">D</span>
+                    <span class="p-1 display-6">O</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

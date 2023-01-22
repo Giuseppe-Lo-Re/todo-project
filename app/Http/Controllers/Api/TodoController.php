@@ -12,7 +12,7 @@ class TodoController extends Controller
     public function index() {
 
         // Retrieve the currently authenticated user's id
-        $userId = 1;
+        $userId = 2;
 
         // Print all todos from Model
         $todos = Todo::where('user_id', $userId)->orderBy('order_position', 'ASC')->get();
