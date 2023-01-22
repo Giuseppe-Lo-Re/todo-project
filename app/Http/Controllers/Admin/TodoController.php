@@ -14,21 +14,21 @@ class TodoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    // --------------- INDEX --------------- //
     public function index(Request $request)
     {
-        // Find user
-        // $user = Auth::user();
-
         // Find user id from db
         $userId = auth()->id();  
 
-        // Print all todos from Model
+        // Retrieve all todos from Model
         $todos = Todo::where('user_id', $userId)->get();
 
         // Collect all the requests 
         $request_info = $request->all();
 
-        // $show_deleted_message will be equal to 'deleted' if present, otherwise it will be equal to 'null'
+        // Define a deleted message for frontend that will be equal to 'deleted' if present, otherwise it will be equal to 'null'
         $show_deleted_message = isset($request_info['deleted']) ? $request_info['deleted'] : null;
         
         // Pass data to the view
@@ -45,6 +45,9 @@ class TodoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    // --------------- CREATE --------------- //
     public function create()
     {
         return view('admin.todos.create');
@@ -56,6 +59,9 @@ class TodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
+    // --------------- STORE --------------- //
     public function store(Request $request)
     {
         // Data validation
@@ -67,7 +73,7 @@ class TodoController extends Controller
         // Find user id from db
         $userId = auth()->id(); 
 
-        // Print all todos from Model
+        // Retrieve all todos from Model
         $todos = Todo::where('user_id', $userId)->get();
         
         // Retrieve next order position
@@ -93,6 +99,9 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+    // --------------- SHOW --------------- //
     public function show($id)
     {
         // Find todo from id
@@ -112,6 +121,9 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+    // --------------- EDIT --------------- //
     public function edit($id)
     {
         // Find todo from id
@@ -132,6 +144,9 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+    // --------------- UPDATE --------------- //
     public function update(Request $request, $id)
     {
         // Data validation
@@ -156,6 +171,9 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+    // --------------- DESTROY --------------- //
     public function destroy($id)
     {
         // Find the todo to delete through id
@@ -168,6 +186,8 @@ class TodoController extends Controller
         return redirect()->route('admin.todos.index', ['deleted' => 'yes']);
     }
 
+
+    // --------------- FUNCTION --------------- //
     // Define validation rules
     protected function getValidationRules() {
         return [

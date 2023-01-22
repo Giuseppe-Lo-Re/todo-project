@@ -9,12 +9,14 @@ use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
+
+    // --------------- INDEX --------------- //
     public function index() {
           
         // Retrieve the currently authenticated user's id
         $userId = 3;
         
-        // Print all todos from Model
+        // Collect all todos from Model and order by ascendent order position 
         $todos = Todo::where('user_id', $userId)->orderBy('order_position', 'ASC')->get();
         
         $data = [
@@ -25,6 +27,8 @@ class TodoController extends Controller
         return response()->json($data);
     }
 
+
+    // --------------- STORE --------------- //
     public function store(Request $request) {
 
         // Collect all data from form
@@ -33,7 +37,7 @@ class TodoController extends Controller
         // Find user id from db 
         $userId = 3;
 
-        // Print all todos from Model
+        // Retrieve all todos from Model
         $todos = Todo::where('user_id', $userId)->get();
         
         // Retrieve next order position
@@ -50,6 +54,8 @@ class TodoController extends Controller
         $new_todo->save();
     }
 
+
+    // --------------- EDIT --------------- //
     public function edit(Request $request) {
 
         // Save request input in a variable
@@ -64,14 +70,18 @@ class TodoController extends Controller
         // Save request input in a variable
         $order_position = $request->input('order_position');
 
-        //update Todo ids
+        //update order position Todo 
         $i = 1;
         foreach ($order_position as $todo_id) {
+
+            // Update order_position with new order
             Todo::where('id', $todo_id)->update(['order_position' => $i]);
             $i++;
         }
     }
 
+
+    // --------------- DESTROY --------------- //
     public function destroy($id) {
 
         // Find the todo to delete through id
