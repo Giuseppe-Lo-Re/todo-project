@@ -9,10 +9,7 @@
         <span class="text-primary p-1">O</span>
     </h1>
 
-    <!-- Draggagle container -->
-    <draggable v-model="todoList" :options="{animation: 150}" @change="updateTodoList(todoList)">
-      
-      <!-- new To Do Form -->
+    <!-- new To Do Form -->
       <div class="mb-3">
         <form @submit.prevent="addTodo" class="form-inline my-2 my-lg-0">
 
@@ -22,11 +19,14 @@
             <input v-model="newTodo" class="card-body" type="search" placeholder="Aggiungi un nuovo todo" aria-label="Aggiungi">
 
             <!-- Add button -->
-            <button class="btn btn-success btn-sm ml-2" type="submit">🔐 Salva</button>
+            <button class="btn btn-success btn-sm ml-2 px-3" type="submit">Salva</button>
           </div>
         </form>
       </div>
-  
+
+    <!-- Draggagle container -->
+    <draggable v-model="todoList" :options="{animation: 150}" @end="updateTodoList(todoList)">
+        
       <!-- For Loop for print todos -->
       <div v-for="todo in todoList" :key="todo.id" class="card mb-2">
         
@@ -68,8 +68,6 @@
 
         // Convert list in a ids array
         let updatedTodoIds = todoList.map(todo => todo.id);
-      
-        console.log("updatedTodoIds: ", updatedTodoIds)
 
         // Axios call that sends order position array
         axios.post('/api/save-todo-order', {
@@ -81,7 +79,9 @@
         .catch(error => {
           console.log(error)
         })
-          console.log(todoList);
+
+        // Recall getTodoList to retrieve todolist
+        // this.getTodoList();
       },
     
       addTodo() {
@@ -100,6 +100,8 @@
           .catch(error => {
             console.log(error)
           });
+
+          // Recall getTodoList to retrieve todolist
           this.getTodoList();
         }
       },
@@ -129,6 +131,7 @@
       }
     },
 
+    // When the component has been mounted to the DOM, throw getTodoList()
     mounted() {
       this.getTodoList()
     }

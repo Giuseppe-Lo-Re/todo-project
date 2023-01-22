@@ -1932,7 +1932,6 @@ __webpack_require__.r(__webpack_exports__);
       var updatedTodoIds = todoList.map(function (todo) {
         return todo.id;
       });
-      console.log("updatedTodoIds: ", updatedTodoIds);
 
       // Axios call that sends order position array
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/save-todo-order', {
@@ -1942,7 +1941,9 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
-      console.log(todoList);
+
+      // Recall getTodoList to retrieve todolist
+      // this.getTodoList();
     },
     addTodo: function addTodo() {
       var _this = this;
@@ -1957,6 +1958,8 @@ __webpack_require__.r(__webpack_exports__);
         })["catch"](function (error) {
           console.log(error);
         });
+
+        // Recall getTodoList to retrieve todolist
         this.getTodoList();
       }
     },
@@ -1981,6 +1984,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
+  // When the component has been mounted to the DOM, throw getTodoList()
   mounted: function mounted() {
     this.getTodoList();
   }
@@ -2024,25 +2028,7 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "text-center"
-  }, [_vm._m(0), _vm._v(" "), _c("draggable", {
-    attrs: {
-      options: {
-        animation: 150
-      }
-    },
-    on: {
-      change: function change($event) {
-        return _vm.updateTodoList(_vm.todoList);
-      }
-    },
-    model: {
-      value: _vm.todoList,
-      callback: function callback($$v) {
-        _vm.todoList = $$v;
-      },
-      expression: "todoList"
-    }
-  }, [_c("div", {
+  }, [_vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "mb-3"
   }, [_c("form", {
     staticClass: "form-inline my-2 my-lg-0",
@@ -2077,11 +2063,29 @@ var render = function render() {
       }
     }
   }), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-success btn-sm ml-2",
+    staticClass: "btn btn-success btn-sm ml-2 px-3",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("🔐 Salva")])])])]), _vm._v(" "), _vm._l(_vm.todoList, function (todo) {
+  }, [_vm._v("Salva")])])])]), _vm._v(" "), _c("draggable", {
+    attrs: {
+      options: {
+        animation: 150
+      }
+    },
+    on: {
+      end: function end($event) {
+        return _vm.updateTodoList(_vm.todoList);
+      }
+    },
+    model: {
+      value: _vm.todoList,
+      callback: function callback($$v) {
+        _vm.todoList = $$v;
+      },
+      expression: "todoList"
+    }
+  }, _vm._l(_vm.todoList, function (todo) {
     return _c("div", {
       key: todo.id,
       staticClass: "card mb-2"
@@ -2097,7 +2101,7 @@ var render = function render() {
         }
       }
     }, [_vm._v("\n          Elimina\n        ")])])]);
-  })], 2)], 1);
+  }), 0)], 1);
 };
 var staticRenderFns = [function () {
   var _vm = this,

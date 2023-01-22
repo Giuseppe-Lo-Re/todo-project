@@ -24,17 +24,7 @@ class TodoController extends Controller
         return response()->json($data);
     }
 
-    public function destroy($id)
-    {
-        // Find the todo to delete through id
-        $post_to_delete = Todo::findOrFail($id);
-        
-        // Delete the todo to delete
-        $post_to_delete->delete();
-    }
-
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         // Collect all data from form
         $form_data = $request->all();
         
@@ -45,7 +35,7 @@ class TodoController extends Controller
         $todos = Todo::where('user_id', $userId)->get();
         
         // Retrieve next order position
-        $new_order_position = count($todos) + 2;
+        $new_order_position = count($todos) + 1;
     
         // Create a new istance of todo with values from request
         $new_todo = new Todo([
@@ -69,5 +59,14 @@ class TodoController extends Controller
             Todo::where('id', $todo_id)->update(['order_position' => $i]);
             $i++;
         }
+    }
+
+    public function destroy($id) {
+
+        // Find the todo to delete through id
+        $post_to_delete = Todo::findOrFail($id);
+        
+        // Delete the todo to delete
+        $post_to_delete->delete();
     }
 }
