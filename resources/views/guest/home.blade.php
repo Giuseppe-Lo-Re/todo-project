@@ -10,6 +10,13 @@
 <body>
     <div id="root"></div>
 
+    {{-- permette di visualizzare nella porzione guest l'utente loggato --}}
+    @auth
+        <script>
+            window.user = true;
+        </script>
+    @endauth
+
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

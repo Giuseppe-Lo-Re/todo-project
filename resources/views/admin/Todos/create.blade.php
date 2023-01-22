@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h2 class="text-center p-3">Crea un nuovo To-do</h2>
+<h2 class="text-center p-3">Crea</h2>
 
 {{-- Display Validation Errors --}}
 @if ($errors->any())
@@ -23,8 +23,8 @@
 
     {{-- Description --}}
     <div class="add-items"> 
-        <label for="description" class="form-label">Descrizione</label>
-        <input type="text" class="form-control todo-list-input" placeholder="Cos'hai da fare?" id='description' name='description' value="{{ old('description') }}"> 
+        <label for="description" class="form-label"></label>
+        <input type="text" class="form-control todo-list-input" placeholder="Scrivi un nuovo Todo..." id='description' name='description' value="{{ old('description') }}"> 
     </div>
     
     {{-- Submit --}}

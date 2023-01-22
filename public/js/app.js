@@ -1918,6 +1918,11 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_0___default.a
   },
+  computed: {
+    isUserLogged: function isUserLogged() {
+      return window.user;
+    }
+  },
   data: function data() {
     return {
       todoList: [],
@@ -1926,8 +1931,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     updateTodoList: function updateTodoList(todoList) {
-      console.log("todolist: ", todoList);
-
       // Convert list in a ids array
       var updatedTodoIds = todoList.map(function (todo) {
         return todo.id;
@@ -1941,9 +1944,6 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
-
-      // Recall getTodoList to retrieve todolist
-      // this.getTodoList();
     },
     addTodo: function addTodo() {
       var _this = this;
@@ -1963,6 +1963,19 @@ __webpack_require__.r(__webpack_exports__);
         this.getTodoList();
       }
     },
+    // updateTodo(id) {
+    //   if (this.selectedTodo.description.trim().length > 0) {
+    //     axios.patch(`/api/todos/${this.selectedTodo.id}`, {
+    //       description: this.selectedTodo.description,
+    //     })
+    //     .then(response => {
+    //       this.getTodoList()
+    //     })
+    //     .catch(error => {
+    //       console.log(error)
+    //     })
+    //   }
+    // },
     removeTodo: function removeTodo(id) {
       // Remove todo with specific id and return a new array without it
       this.todoList = this.todoList.filter(function (todo) {
@@ -2026,7 +2039,11 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", {
+  return _c("div", [_c("div", [_vm.isUserLogged ? _c("div", [_c("a", {
+    attrs: {
+      href: "/admin"
+    }
+  }, [_vm._v("\n        Area privata\n      ")]), _vm._v(" "), _c("div", {
     staticClass: "text-center"
   }, [_vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "mb-3"
@@ -2050,7 +2067,7 @@ var render = function render() {
     staticClass: "card-body",
     attrs: {
       type: "search",
-      placeholder: "Aggiungi un nuovo todo",
+      placeholder: "Crea un nuovo todo",
       "aria-label": "Aggiungi"
     },
     domProps: {
@@ -2093,21 +2110,51 @@ var render = function render() {
       staticClass: "card-body d-flex justify-content-between"
     }, [_c("div", {
       staticClass: "card-title"
-    }, [_vm._v("\n            " + _vm._s(todo.description) + "\n        ")]), _vm._v(" "), _c("button", {
+    }, [_vm._v("\n                " + _vm._s(todo.description) + "\n            ")]), _vm._v(" "), _c("div", [_c("button", {
       staticClass: "btn btn-danger btn-sm",
       on: {
         click: function click($event) {
           return _vm.removeTodo(todo.id);
         }
       }
-    }, [_vm._v("\n          Elimina\n        ")])])]);
-  }), 0)], 1);
+    }, [_vm._v("\n              Elimina\n            ")])])])]);
+  }), 0)], 1)]) : _c("div", [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3)])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("h1", {
     staticClass: "mt-5"
+  }, [_c("span", {
+    staticClass: "text-warning p-1"
+  }, [_vm._v("T")]), _vm._v(" "), _c("span", {
+    staticClass: "text-success p-1"
+  }, [_vm._v("O")]), _vm._v(" "), _c("span", {
+    staticClass: "text-danger p-1"
+  }, [_vm._v("D")]), _vm._v(" "), _c("span", {
+    staticClass: "text-primary p-1"
+  }, [_vm._v("O")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_c("a", {
+    attrs: {
+      href: "/login"
+    }
+  }, [_c("span", [_vm._v("Accedi")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_c("span", [_vm._v("\n            oppure \n        ")]), _vm._v(" "), _c("a", {
+    attrs: {
+      href: "/register"
+    }
+  }, [_c("span", [_vm._v("Registrati")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("h1", {
+    staticClass: "mt-5 text-center"
   }, [_c("span", {
     staticClass: "text-warning p-1"
   }, [_vm._v("T")]), _vm._v(" "), _c("span", {

@@ -18,7 +18,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Create new Todo
+Route::post('/save-new-todo', 'Api\TodoController@store');
+
+// Read Todo list
 Route::get('/todos', 'Api\TodoController@index'); 
-Route::post('/save-todo-order', 'Api\TodoController@update'); 
-Route::post('/save-new-todo', 'Api\TodoController@store'); 
+
+// Update Todo
+Route::delete('/todos/{id}', 'Api\TodoController@edit'); 
+
+// Update order position
+Route::post('/save-todo-order', 'Api\TodoController@update');
+ 
+// Delete Todo
 Route::delete('/delete-todo/{id}', 'Api\TodoController@destroy'); 
+
+

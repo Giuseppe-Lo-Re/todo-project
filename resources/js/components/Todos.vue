@@ -1,51 +1,96 @@
 
 <template>
-  <!-- Title -->
-  <div class="text-center">
-    <h1 class="mt-5">
+  
+  <div>
+    <div>
+    <div v-if="isUserLogged">
+        <a href="/admin">
+          Area privata
+        </a>
+
+        <!-- Title -->
+      <div class="text-center">
+        <h1 class="mt-5">
+            <span class="text-warning p-1">T</span>
+            <span class="text-success p-1">O</span>
+            <span class="text-danger p-1">D</span>
+            <span class="text-primary p-1">O</span>
+        </h1>
+
+        <!-- new To Do Form -->
+          <div class="mb-3">
+            <form @submit.prevent="addTodo" class="form-inline my-2 my-lg-0">
+
+              <div class="card-body d-flex justify-content-between">
+
+                <!-- Description input -->
+                <input v-model="newTodo" class="card-body" type="search" placeholder="Crea un nuovo todo" aria-label="Aggiungi">
+
+                <!-- Add button -->
+                <button class="btn btn-success btn-sm ml-2 px-3" type="submit">Salva</button>
+              </div>
+            </form>
+          </div>
+
+        <!-- Draggagle container -->
+        <draggable v-model="todoList" :options="{animation: 150}" @end="updateTodoList(todoList)">
+            
+          <!-- For Loop for print todos -->
+          <div v-for="todo in todoList" :key="todo.id" class="card mb-2">
+            
+            <!-- Single To Do -->
+            <div class="card-body d-flex justify-content-between">
+            
+              <!-- Description -->
+              <div class="card-title">
+                  {{ todo.description }}
+              </div>
+
+              <!-- Buttons container -->
+              <div>
+              <!-- Update button
+              <button @click="updateTodo(todo.id)" class="btn btn-warning btn-sm">
+                Modifica
+              </button> -->
+
+              <!-- Delete button -->
+              <button @click="removeTodo(todo.id)" class="btn btn-danger btn-sm">
+                Elimina
+              </button>
+              </div>
+              
+            </div>
+          </div>
+        </draggable>
+      </div>
+    </div>
+    <div v-else>
+      <div>
+          <a href="/login">
+            <span>Accedi</span>
+          </a>
+      </div>
+      <div>
+          <span>
+              oppure 
+          </span>
+          <a href="/register">
+              <span>Registrati</span>
+          </a>
+      </div>
+
+      <h1 class="mt-5 text-center">
         <span class="text-warning p-1">T</span>
         <span class="text-success p-1">O</span>
         <span class="text-danger p-1">D</span>
         <span class="text-primary p-1">O</span>
-    </h1>
-
-    <!-- new To Do Form -->
-      <div class="mb-3">
-        <form @submit.prevent="addTodo" class="form-inline my-2 my-lg-0">
-
-          <div class="card-body d-flex justify-content-between">
-
-            <!-- Description input -->
-            <input v-model="newTodo" class="card-body" type="search" placeholder="Aggiungi un nuovo todo" aria-label="Aggiungi">
-
-            <!-- Add button -->
-            <button class="btn btn-success btn-sm ml-2 px-3" type="submit">Salva</button>
-          </div>
-        </form>
-      </div>
-
-    <!-- Draggagle container -->
-    <draggable v-model="todoList" :options="{animation: 150}" @end="updateTodoList(todoList)">
-        
-      <!-- For Loop for print todos -->
-      <div v-for="todo in todoList" :key="todo.id" class="card mb-2">
-        
-        <!-- Single To Do -->
-        <div class="card-body d-flex justify-content-between">
-        
-          <!-- Description -->
-          <div class="card-title">
-              {{ todo.description }}
-          </div>
-
-          <!-- Delete button -->
-          <button @click="removeTodo(todo.id)" class="btn btn-danger btn-sm">
-            Elimina
-          </button>
-        </div>
-      </div>
-    </draggable>
+      </h1>
+      
+    </div>
   </div>
+  
+
+  </div> 
 </template>
 
 <script>
@@ -56,15 +101,19 @@
     components: {
       draggable
     },
+    computed: {
+        isUserLogged() {
+            return  window.user;
+        }
+    },
     data() {
       return {
         todoList: [],
-        newTodo: ''
+        newTodo: '',
       }
     },
     methods: {
       updateTodoList(todoList) {
-        console.log("todolist: ", todoList);
 
         // Convert list in a ids array
         let updatedTodoIds = todoList.map(todo => todo.id);
@@ -79,9 +128,6 @@
         .catch(error => {
           console.log(error)
         })
-
-        // Recall getTodoList to retrieve todolist
-        // this.getTodoList();
       },
     
       addTodo() {
@@ -106,6 +152,21 @@
         }
       },
       
+      // updateTodo(id) {
+
+      //   if (this.selectedTodo.description.trim().length > 0) {
+      //     axios.patch(`/api/todos/${this.selectedTodo.id}`, {
+      //       description: this.selectedTodo.description,
+      //     })
+      //     .then(response => {
+      //       this.getTodoList()
+      //     })
+      //     .catch(error => {
+      //       console.log(error)
+      //     })
+      //   }
+      // },
+
       removeTodo(id) {
 
         // Remove todo with specific id and return a new array without it

@@ -48,12 +48,21 @@ class TodoController extends Controller
         $new_todo->save();
     }
 
+    public function edit(Request $request) {
+
+        // Save request input in a variable
+        $description_to_update = $request->input('description');
+
+        // Update Todo
+        Todo::where('id', $todo_id)->update(['description' => $description_to_update]);
+    }
+
     public function update(Request $request) {
 
         // Save request input in a variable
         $order_position = $request->input('order_position');
 
-        //update todo
+        //update Todo ids
         $i = 1;
         foreach ($order_position as $todo_id) {
             Todo::where('id', $todo_id)->update(['order_position' => $i]);
