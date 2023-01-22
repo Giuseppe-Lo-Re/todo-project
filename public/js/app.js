@@ -1931,8 +1931,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     logout: function logout() {
+      // Axios call to logout user
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/logout').then(function (response) {
-        // handle logout success, such as redirecting to login page
+        // redirect on login home
+        location.reload();
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2051,9 +2053,6 @@ var render = function render() {
     staticClass: "d-flex justify-content-between"
   }, [_vm._m(0), _vm._v(" "), _c("div", [_c("button", {
     staticClass: "btn btn-outline-danger btn-sm",
-    attrs: {
-      href: "/logout"
-    },
     on: {
       click: _vm.logout
     }

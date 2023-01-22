@@ -12,7 +12,7 @@
         </div>
 
         <div>
-          <button @click="logout" class="btn btn-outline-danger btn-sm" href="/logout">
+          <button @click="logout" class="btn btn-outline-danger btn-sm">
             Logout
           </button>
         </div>
@@ -133,9 +133,13 @@
     },
     methods: {
       logout() {
-      axios.post('/logout')
+      
+      // Axios call to logout user
+        axios.post('/logout')
         .then(response => {
-          // handle logout success, such as redirecting to login page
+
+          // redirect on login home
+          location.reload()
         })
         .catch(error => {
           console.log(error)
