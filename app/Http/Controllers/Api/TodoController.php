@@ -13,7 +13,7 @@ class TodoController extends Controller
     public function index() {
           
         // Retrieve the currently authenticated user's id
-        $userId = 3;
+        $userId = 1;
         
         // Collect all todos from Model and order by ascendent order position 
         $todos = Todo::where('user_id', $userId)->orderBy('order_position', 'ASC')->get();
@@ -33,12 +33,12 @@ class TodoController extends Controller
         $form_data = $request->all();
         
         // Find user id from db 
-        $userId = 3;
+        $userId = 1;
 
         // Retrieve all todos from Model
         $todos = Todo::where('user_id', $userId)->get();
         
-        // Retrieve next order position
+        // Define next order position as least
         $new_order_position = count($todos) + 1;
     
         // Create a new istance of todo with values from request

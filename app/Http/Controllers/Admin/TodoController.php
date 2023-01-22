@@ -180,7 +180,8 @@ class TodoController extends Controller
     }
 
 
-    // --------------- FUNCTION --------------- //
+    // --------------- UTILITY FUNCTION --------------- //
+    
     // Define validation rules
     protected function getValidationRules() {
         return [
