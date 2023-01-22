@@ -45,7 +45,7 @@ class TodoController extends Controller
         $todos = Todo::where('user_id', $userId)->get();
         
         // Retrieve next order position
-        $new_order_position = count($todos) + 1;
+        $new_order_position = count($todos) + 2;
     
         // Create a new istance of todo with values from request
         $new_todo = new Todo([
@@ -60,26 +60,14 @@ class TodoController extends Controller
 
     public function update(Request $request) {
 
-        // Find user id from db
-        $userId = auth()->id(); 
+        // Save request input in a variable
+        $order_position = $request->input('order_position');
 
-        // Print all todos from Model
-        $todos = Todo::where('user_id', $userId)->get();
-
-        // Delete all old todos
-        $todos->delete();
-        
-        // Collect all data from form
-        $form_data = $request->all();
-
-        // Create a new istance of todo with values from request
-        $new_todo = new Todo([
-            'order_position' => $request->order_position,
-            'description' => $request->description,
-            'user_id' => $userId
-        ]);
-
-        // Save new todo
-        $new_todo->save();
+        //update todo
+        $i = 1;
+        foreach ($order_position as $todo_id) {
+            Todo::where('id', $todo_id)->update(['order_position' => $i]);
+            $i++;
+        }
     }
 }

@@ -19,6 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/todos', 'Api\TodoController@index'); 
-Route::post('/save-todo-order/{id}', 'Api\TodoController@update'); 
+Route::post('/save-todo-order', 'Api\TodoController@update'); 
 Route::post('/save-new-todo', 'Api\TodoController@store'); 
 Route::delete('/delete-todo/{id}', 'Api\TodoController@destroy'); 

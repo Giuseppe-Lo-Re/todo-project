@@ -10,7 +10,7 @@
     </h1>
 
     <!-- Draggagle container -->
-    <draggable v-model="todoList" :options="{animation: 150}" @change="updateTodoList">
+    <draggable v-model="todoList" :options="{animation: 150}" @change="updateTodoList(todoList)">
       
       <!-- new To Do Form -->
       <div class="mb-3">
@@ -63,9 +63,17 @@
       }
     },
     methods: {
-      updateTodoList(id) {
+      updateTodoList(todoList) {
+        console.log("todolist: ", todoList);
+
+        // Convert list in a ids array
+        let updatedTodoIds = todoList.map(todo => todo.id);
+      
+        console.log("updatedTodoIds: ", updatedTodoIds)
+
+        // Axios call that sends order position array
         axios.post('/api/save-todo-order', {
-          todos: this.todoList
+          order_position: updatedTodoIds
         })
         .then(response => {
           console.log(response)
@@ -73,11 +81,15 @@
         .catch(error => {
           console.log(error)
         })
-          console.log(this.todoList);
+          console.log(todoList);
       },
     
       addTodo() {
+
+        // If the new todo description > 0
         if (this.newTodo.trim().length > 0) {
+
+          // Axios call that send new todo
           axios.post('/api/save-new-todo', {
             description: this.newTodo
           })
@@ -93,8 +105,11 @@
       },
       
       removeTodo(id) {
+
+        // Remove todo with specific id and return a new array without it
         this.todoList = this.todoList.filter(todo => todo.id !== id)
-        console.log('sto chiamando il webservice', id)
+
+        // Axios call to delete selected todo
         axios.delete(`/api/delete-todo/${id}`)
           .then(response => {
             console.log(response)
@@ -105,6 +120,8 @@
       },
 
       getTodoList() {
+
+        // Axios call to retrieve todo list
         axios.get('/api/todos')
         .then((response) => {
           this.todoList = response.data.results;

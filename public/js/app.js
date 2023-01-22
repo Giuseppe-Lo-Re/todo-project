@@ -1925,19 +1925,30 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    updateTodoList: function updateTodoList(id) {
+    updateTodoList: function updateTodoList(todoList) {
+      console.log("todolist: ", todoList);
+
+      // Convert list in a ids array
+      var updatedTodoIds = todoList.map(function (todo) {
+        return todo.id;
+      });
+      console.log("updatedTodoIds: ", updatedTodoIds);
+
+      // Axios call that sends order position array
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/save-todo-order', {
-        todos: this.todoList
+        order_position: updatedTodoIds
       }).then(function (response) {
         console.log(response);
       })["catch"](function (error) {
         console.log(error);
       });
-      console.log(this.todoList);
+      console.log(todoList);
     },
     addTodo: function addTodo() {
       var _this = this;
+      // If the new todo description > 0
       if (this.newTodo.trim().length > 0) {
+        // Axios call that send new todo
         axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/save-new-todo', {
           description: this.newTodo
         }).then(function (response) {
@@ -1950,10 +1961,12 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     removeTodo: function removeTodo(id) {
+      // Remove todo with specific id and return a new array without it
       this.todoList = this.todoList.filter(function (todo) {
         return todo.id !== id;
       });
-      console.log('sto chiamando il webservice', id);
+
+      // Axios call to delete selected todo
       axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("/api/delete-todo/".concat(id)).then(function (response) {
         console.log(response);
       })["catch"](function (error) {
@@ -1962,6 +1975,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     getTodoList: function getTodoList() {
       var _this2 = this;
+      // Axios call to retrieve todo list
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/todos').then(function (response) {
         _this2.todoList = response.data.results;
       });
@@ -2017,7 +2031,9 @@ var render = function render() {
       }
     },
     on: {
-      change: _vm.updateTodoList
+      change: function change($event) {
+        return _vm.updateTodoList(_vm.todoList);
+      }
     },
     model: {
       value: _vm.todoList,
