@@ -4,10 +4,10 @@
 
     {{-- Title --}}
     <div class="text-center">
-        <h2>Bentornato {{ $user->name }}!</h2>
+        <h2>Bentornato <span class="text-success">{{ $user->name }} </span>!</h2>
         
         {{-- Welcome text --}}
-        <h3>Cosa facciamo oggi?</h3>
+        <h5><em>Cosa facciamo oggi?</em></h5>
     </div>
 
 @endsection

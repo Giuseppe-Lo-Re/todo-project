@@ -52,12 +52,12 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
 
-                            <a class="nav-link active text-light" href="/console">
-                                🕹️ Console
-                            </a>
-
                             <a class="nav-link active text-light" href="{{ route('admin.home') }}">
                                 🏠 Dashboard
+                            </a>
+
+                            <a class="nav-link active text-light" href="/console">
+                                🕹️ Console
                             </a>
                         </li>
                         <li class="nav-item">

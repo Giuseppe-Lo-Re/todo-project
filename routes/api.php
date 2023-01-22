@@ -25,7 +25,7 @@ Route::post('/save-new-todo', 'Api\TodoController@store');
 Route::get('/todos', 'Api\TodoController@index'); 
 
 // Update Todo
-Route::delete('/todos/{id}', 'Api\TodoController@edit'); 
+// Route::post('/todos/{id}', 'Api\TodoController@edit'); 
 
 // Update order position
 Route::post('/save-todo-order', 'Api\TodoController@update');

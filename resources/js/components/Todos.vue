@@ -4,13 +4,15 @@
   <div>
     <div>
     <div v-if="isUserLogged">
-        <a href="/admin">
+      <div class="text-right">
+        <a class="btn btn-outline-primary btn-sm" href="/admin">
           Area privata
         </a>
+      </div>
 
         <!-- Title -->
       <div class="text-center">
-        <h1 class="mt-5">
+        <h1 class="display-3 mt-5">
             <span class="text-warning p-1">T</span>
             <span class="text-success p-1">O</span>
             <span class="text-danger p-1">D</span>
@@ -24,7 +26,7 @@
               <div class="card-body d-flex justify-content-between">
 
                 <!-- Description input -->
-                <input v-model="newTodo" class="card-body" type="search" placeholder="Crea un nuovo todo" aria-label="Aggiungi">
+                <input v-model="newTodo" class="card-body" type="search" placeholder="Crea un nuovo todo..." aria-label="Aggiungi">
 
                 <!-- Add button -->
                 <button class="btn btn-success btn-sm ml-2 px-3" type="submit">Salva</button>
@@ -64,28 +66,37 @@
         </draggable>
       </div>
     </div>
+    
     <div v-else>
-      <div>
-          <a href="/login">
+      <div class="text-center">
+        <h1 class="display-1 mt-5 pt-5 text-center">
+          <span class="text-warning p-1">T</span>
+          <span class="text-success p-1">O</span>
+          <span class="text-danger p-1">D</span>
+          <span class="text-primary p-1">O</span>
+        </h1>
+
+        <div>
+          <span class="display- text-warning p-1 mr-3"><strong>Task</strong></span>
+          <span class="text-success p-1"><strong>Organizer</strong></span>
+          <em class="p-1 mr-1">and</em>
+          <span class="text-danger p-1">Daily</span>
+          <span class="text-primary p-1 ml-3">Operations</span>
+        </div>
+        
+        <div class="mt-5">
+          <a class="btn btn-outline-success btn-sm" href="/login">
             <span>Accedi</span>
           </a>
-      </div>
-      <div>
-          <span>
-              oppure 
+          <span class="text-danger mx-3">
+              o
           </span>
-          <a href="/register">
+          <a class="btn btn-outline-primary btn-sm" href="/register">
               <span>Registrati</span>
           </a>
+        </div>
       </div>
 
-      <h1 class="mt-5 text-center">
-        <span class="text-warning p-1">T</span>
-        <span class="text-success p-1">O</span>
-        <span class="text-danger p-1">D</span>
-        <span class="text-primary p-1">O</span>
-      </h1>
-      
     </div>
   </div>
   
@@ -103,7 +114,7 @@
     },
     computed: {
         isUserLogged() {
-            return  window.user;
+          return  window.user;
         }
     },
     data() {
@@ -140,7 +151,7 @@
             description: this.newTodo
           })
           .then(response => {
-            this.todoList.push(response.data)
+            this.todoList.push(response.data);
             this.newTodo = ''
           })
           .catch(error => {
@@ -187,6 +198,7 @@
         // Axios call to retrieve todo list
         axios.get('/api/todos')
         .then((response) => {
+          console.log(response);
           this.todoList = response.data.results;
         })
       }
@@ -194,7 +206,7 @@
 
     // When the component has been mounted to the DOM, throw getTodoList()
     mounted() {
-      this.getTodoList()
+      this.getTodoList();
     }
   }
   </script>

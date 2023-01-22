@@ -5,14 +5,18 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Todo;
+use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
     public function index() {
 
+        // Find user
+        // $user = auth('api')->user(); 
+          
         // Retrieve the currently authenticated user's id
         $userId = 1;
-
+        
         // Print all todos from Model
         $todos = Todo::where('user_id', $userId)->orderBy('order_position', 'ASC')->get();
         
@@ -25,11 +29,12 @@ class TodoController extends Controller
     }
 
     public function store(Request $request) {
+
         // Collect all data from form
         $form_data = $request->all();
         
-        // Find user id from db
-        $userId = 1; 
+        // Find user id from db 
+        $userId = 1;
 
         // Print all todos from Model
         $todos = Todo::where('user_id', $userId)->get();

@@ -8,7 +8,7 @@
                     <div class="card px-3">
                         <div class="card-body">
                             <div>
-
+                                
                                 {{-- Alert confirm deleted message --}}
                                 @if ($show_deleted_message === 'yes')
                                 <div class="alert alert-success" role="alert">

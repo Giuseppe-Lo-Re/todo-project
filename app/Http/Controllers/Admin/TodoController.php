@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Todo;
+use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
@@ -15,8 +16,11 @@ class TodoController extends Controller
      */
     public function index(Request $request)
     {
+        // Find user
+        // $user = Auth::user();
+
         // Find user id from db
-        $userId = auth()->id(); 
+        $userId = auth()->id();  
 
         // Print all todos from Model
         $todos = Todo::where('user_id', $userId)->get();

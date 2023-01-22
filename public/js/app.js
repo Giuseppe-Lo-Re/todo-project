@@ -1993,6 +1993,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
       // Axios call to retrieve todo list
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/todos').then(function (response) {
+        console.log(response);
         _this2.todoList = response.data.results;
       });
     }
@@ -2039,13 +2040,9 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("div", [_vm.isUserLogged ? _c("div", [_c("a", {
-    attrs: {
-      href: "/admin"
-    }
-  }, [_vm._v("\n        Area privata\n      ")]), _vm._v(" "), _c("div", {
+  return _c("div", [_c("div", [_vm.isUserLogged ? _c("div", [_vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "text-center"
-  }, [_vm._m(0), _vm._v(" "), _c("div", {
+  }, [_vm._m(1), _vm._v(" "), _c("div", {
     staticClass: "mb-3"
   }, [_c("form", {
     staticClass: "form-inline my-2 my-lg-0",
@@ -2067,7 +2064,7 @@ var render = function render() {
     staticClass: "card-body",
     attrs: {
       type: "search",
-      placeholder: "Crea un nuovo todo",
+      placeholder: "Crea un nuovo todo...",
       "aria-label": "Aggiungi"
     },
     domProps: {
@@ -2118,13 +2115,24 @@ var render = function render() {
         }
       }
     }, [_vm._v("\n              Elimina\n            ")])])])]);
-  }), 0)], 1)]) : _c("div", [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3)])])]);
+  }), 0)], 1)]) : _c("div", [_vm._m(2)])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "text-right"
+  }, [_c("a", {
+    staticClass: "btn btn-outline-primary btn-sm",
+    attrs: {
+      href: "/admin"
+    }
+  }, [_vm._v("\n        Area privata\n      ")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
   return _c("h1", {
-    staticClass: "mt-5"
+    staticClass: "display-3 mt-5"
   }, [_c("span", {
     staticClass: "text-warning p-1"
   }, [_vm._v("T")]), _vm._v(" "), _c("span", {
@@ -2137,33 +2145,43 @@ var staticRenderFns = [function () {
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("a", {
+  return _c("div", {
+    staticClass: "text-center"
+  }, [_c("h1", {
+    staticClass: "display-1 mt-5 pt-5 text-center"
+  }, [_c("span", {
+    staticClass: "text-warning p-1"
+  }, [_vm._v("T")]), _vm._v(" "), _c("span", {
+    staticClass: "text-success p-1"
+  }, [_vm._v("O")]), _vm._v(" "), _c("span", {
+    staticClass: "text-danger p-1"
+  }, [_vm._v("D")]), _vm._v(" "), _c("span", {
+    staticClass: "text-primary p-1"
+  }, [_vm._v("O")])]), _vm._v(" "), _c("div", [_c("span", {
+    staticClass: "display- text-warning p-1 mr-3"
+  }, [_c("strong", [_vm._v("Task")])]), _vm._v(" "), _c("span", {
+    staticClass: "text-success p-1"
+  }, [_c("strong", [_vm._v("Organizer")])]), _vm._v(" "), _c("em", {
+    staticClass: "p-1 mr-1"
+  }, [_vm._v("and")]), _vm._v(" "), _c("span", {
+    staticClass: "text-danger p-1"
+  }, [_vm._v("Daily")]), _vm._v(" "), _c("span", {
+    staticClass: "text-primary p-1 ml-3"
+  }, [_vm._v("Operations")])]), _vm._v(" "), _c("div", {
+    staticClass: "mt-5"
+  }, [_c("a", {
+    staticClass: "btn btn-outline-success btn-sm",
     attrs: {
       href: "/login"
     }
-  }, [_c("span", [_vm._v("Accedi")])])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", [_c("span", [_vm._v("\n            oppure \n        ")]), _vm._v(" "), _c("a", {
+  }, [_c("span", [_vm._v("Accedi")])]), _vm._v(" "), _c("span", {
+    staticClass: "text-danger mx-3"
+  }, [_vm._v("\n            o\n        ")]), _vm._v(" "), _c("a", {
+    staticClass: "btn btn-outline-primary btn-sm",
     attrs: {
       href: "/register"
     }
-  }, [_c("span", [_vm._v("Registrati")])])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("h1", {
-    staticClass: "mt-5 text-center"
-  }, [_c("span", {
-    staticClass: "text-warning p-1"
-  }, [_vm._v("T")]), _vm._v(" "), _c("span", {
-    staticClass: "text-success p-1"
-  }, [_vm._v("O")]), _vm._v(" "), _c("span", {
-    staticClass: "text-danger p-1"
-  }, [_vm._v("D")]), _vm._v(" "), _c("span", {
-    staticClass: "text-primary p-1"
-  }, [_vm._v("O")])]);
+  }, [_c("span", [_vm._v("Registrati")])])])]);
 }];
 render._withStripped = true;
 
