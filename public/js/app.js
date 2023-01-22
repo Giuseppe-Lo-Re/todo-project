@@ -1919,6 +1919,7 @@ __webpack_require__.r(__webpack_exports__);
     draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_0___default.a
   },
   computed: {
+    // Define is user is logged(return boolean)
     isUserLogged: function isUserLogged() {
       return window.user;
     }
@@ -1930,7 +1931,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    logout: function logout() {
+    getLogout: function getLogout() {
       // Axios call to logout user
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/logout').then(function (response) {
         // redirect on login home
@@ -1962,6 +1963,7 @@ __webpack_require__.r(__webpack_exports__);
         axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/save-new-todo', {
           description: this.newTodo
         }).then(function (response) {
+          // Add the new todo from response.data to todoList
           _this.todoList.push(response.data);
           _this.newTodo = '';
         })["catch"](function (error) {
@@ -1972,7 +1974,7 @@ __webpack_require__.r(__webpack_exports__);
         this.getTodoList();
       }
     },
-    // updateTodo(id) {
+    // updateTodo(id) { --> NOT IMPLEMENTED
     //   if (this.selectedTodo.description.trim().length > 0) {
     //     axios.patch(`/api/todos/${this.selectedTodo.id}`, {
     //       description: this.selectedTodo.description,
@@ -2003,6 +2005,8 @@ __webpack_require__.r(__webpack_exports__);
       // Axios call to retrieve todo list
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/todos').then(function (response) {
         console.log(response);
+
+        // Save the list from response.data.results to todoList
         _this2.todoList = response.data.results;
       });
     }
@@ -2054,9 +2058,9 @@ var render = function render() {
   }, [_vm._m(0), _vm._v(" "), _c("div", [_c("button", {
     staticClass: "btn btn-outline-danger btn-sm",
     on: {
-      click: _vm.logout
+      click: _vm.getLogout
     }
-  }, [_vm._v("\n          Logout\n        ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n            Logout\n          ")])])]), _vm._v(" "), _c("div", {
     staticClass: "text-center"
   }, [_vm._m(1), _vm._v(" "), _c("div", {
     staticClass: "mb-3"
@@ -2097,7 +2101,7 @@ var render = function render() {
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("Salva")])])])]), _vm._v(" "), _c("draggable", {
+  }, [_vm._v("\n                Salva\n              ")])])])]), _vm._v(" "), _c("draggable", {
     attrs: {
       options: {
         animation: 150
@@ -2123,14 +2127,14 @@ var render = function render() {
       staticClass: "card-body d-flex justify-content-between"
     }, [_c("div", {
       staticClass: "card-title"
-    }, [_vm._v("\n                " + _vm._s(todo.description) + "\n            ")]), _vm._v(" "), _c("div", [_c("button", {
+    }, [_vm._v("\n                  " + _vm._s(todo.description) + "\n              ")]), _vm._v(" "), _c("div", [_c("button", {
       staticClass: "btn btn-danger btn-sm",
       on: {
         click: function click($event) {
           return _vm.removeTodo(todo.id);
         }
       }
-    }, [_vm._v("\n              Elimina\n            ")])])])]);
+    }, [_vm._v("\n                  Elimina\n                ")])])])]);
   }), 0)], 1)]) : _c("div", [_vm._m(2)])])]);
 };
 var staticRenderFns = [function () {
@@ -2141,7 +2145,7 @@ var staticRenderFns = [function () {
     attrs: {
       href: "/admin"
     }
-  }, [_vm._v("\n          Area privata\n        ")])]);
+  }, [_vm._v("\n            Area privata\n          ")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
@@ -2173,29 +2177,29 @@ var staticRenderFns = [function () {
     staticClass: "text-primary p-1"
   }, [_vm._v("O")])]), _vm._v(" "), _c("div", [_c("span", {
     staticClass: "display- text-warning p-1 mr-3"
-  }, [_c("strong", [_vm._v("Task")])]), _vm._v(" "), _c("span", {
+  }, [_c("strong", [_vm._v("\n              Task\n            ")])]), _vm._v(" "), _c("span", {
     staticClass: "text-success p-1"
-  }, [_c("strong", [_vm._v("Organizer")])]), _vm._v(" "), _c("em", {
+  }, [_c("strong", [_vm._v("\n              Organizer\n            ")])]), _vm._v(" "), _c("em", {
     staticClass: "p-1 mr-1"
-  }, [_vm._v("and")]), _vm._v(" "), _c("span", {
+  }, [_vm._v("\n            and\n          ")]), _vm._v(" "), _c("span", {
     staticClass: "text-danger p-1"
-  }, [_vm._v("Daily")]), _vm._v(" "), _c("span", {
+  }, [_c("strong", [_vm._v("\n              Daily\n            ")])]), _vm._v(" "), _c("span", {
     staticClass: "text-primary p-1 ml-3"
-  }, [_vm._v("Operations")])]), _vm._v(" "), _c("div", {
+  }, [_c("strong", [_vm._v("\n              Operations\n            ")])])]), _vm._v(" "), _c("div", {
     staticClass: "mt-5"
   }, [_c("a", {
     staticClass: "btn btn-outline-success btn-sm",
     attrs: {
       href: "/login"
     }
-  }, [_c("span", [_vm._v("Accedi")])]), _vm._v(" "), _c("span", {
+  }, [_c("span", [_vm._v("\n              Accedi\n            ")])]), _vm._v(" "), _c("span", {
     staticClass: "text-danger mx-3"
-  }, [_vm._v("\n            o\n        ")]), _vm._v(" "), _c("a", {
+  }, [_c("strong", [_vm._v("\n              ~\n            ")])]), _vm._v(" "), _c("a", {
     staticClass: "btn btn-outline-primary btn-sm",
     attrs: {
       href: "/register"
     }
-  }, [_c("span", [_vm._v("Registrati")])])])]);
+  }, [_c("span", [_vm._v("\n              Registrati\n            ")])])])]);
 }];
 render._withStripped = true;
 

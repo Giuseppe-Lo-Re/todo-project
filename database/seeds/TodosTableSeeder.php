@@ -13,7 +13,7 @@ class TodosTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        // Autogenerate Todos for testing table
+        // Autogenerate Todos for testing table with Faker
         for($i = 0; $i < 10; $i++) {
             $new_todo = new Todo();
             $new_todo->order_position = rand(1,10);

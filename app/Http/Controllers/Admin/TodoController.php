@@ -15,7 +15,6 @@ class TodoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-
     // --------------- INDEX --------------- //
     public function index(Request $request)
     {
@@ -46,7 +45,6 @@ class TodoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-
     // --------------- CREATE --------------- //
     public function create()
     {
@@ -59,7 +57,6 @@ class TodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
 
     // --------------- STORE --------------- //
     public function store(Request $request)
@@ -100,7 +97,6 @@ class TodoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-
     // --------------- SHOW --------------- //
     public function show($id)
     {
@@ -121,7 +117,6 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
 
     // --------------- EDIT --------------- //
     public function edit($id)
@@ -144,7 +139,6 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
 
     // --------------- UPDATE --------------- //
     public function update(Request $request, $id)
@@ -171,7 +165,6 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
 
     // --------------- DESTROY --------------- //
     public function destroy($id)

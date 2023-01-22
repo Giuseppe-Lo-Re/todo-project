@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
-
     // --------------- INDEX --------------- //
     public function index() {
           
@@ -26,7 +25,6 @@ class TodoController extends Controller
 
         return response()->json($data);
     }
-
 
     // --------------- STORE --------------- //
     public function store(Request $request) {
@@ -54,7 +52,6 @@ class TodoController extends Controller
         $new_todo->save();
     }
 
-
     // --------------- EDIT --------------- //
     public function edit(Request $request) {
 
@@ -79,7 +76,6 @@ class TodoController extends Controller
             $i++;
         }
     }
-
 
     // --------------- DESTROY --------------- //
     public function destroy($id) {
