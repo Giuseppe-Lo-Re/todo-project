@@ -1930,6 +1930,13 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    logout: function logout() {
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/logout').then(function (response) {
+        // handle logout success, such as redirecting to login page
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
     updateTodoList: function updateTodoList(todoList) {
       // Convert list in a ids array
       var updatedTodoIds = todoList.map(function (todo) {
@@ -2040,7 +2047,17 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("div", [_vm.isUserLogged ? _c("div", [_vm._m(0), _vm._v(" "), _c("div", {
+  return _c("div", [_c("div", [_vm.isUserLogged ? _c("div", [_c("div", {
+    staticClass: "d-flex justify-content-between"
+  }, [_vm._m(0), _vm._v(" "), _c("div", [_c("button", {
+    staticClass: "btn btn-outline-danger btn-sm",
+    attrs: {
+      href: "/logout"
+    },
+    on: {
+      click: _vm.logout
+    }
+  }, [_vm._v("\n          Logout\n        ")])])]), _vm._v(" "), _c("div", {
     staticClass: "text-center"
   }, [_vm._m(1), _vm._v(" "), _c("div", {
     staticClass: "mb-3"
@@ -2120,19 +2137,12 @@ var render = function render() {
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "d-flex justify-content-between"
-  }, [_c("div", [_c("a", {
+  return _c("div", [_c("a", {
     staticClass: "btn btn-outline-primary btn-sm",
     attrs: {
       href: "/admin"
     }
-  }, [_vm._v("\n          Area privata\n        ")])]), _vm._v(" "), _c("div", [_c("a", {
-    staticClass: "btn btn-outline-danger btn-sm",
-    attrs: {
-      href: "/logout"
-    }
-  }, [_vm._v("\n          Logout\n        ")])])]);
+  }, [_vm._v("\n          Area privata\n        ")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;

@@ -12,9 +12,9 @@
         </div>
 
         <div>
-          <a class="btn btn-outline-danger btn-sm" href="/logout">
+          <button @click="logout" class="btn btn-outline-danger btn-sm" href="/logout">
             Logout
-          </a>
+          </button>
         </div>
       </div>
 
@@ -132,6 +132,16 @@
       }
     },
     methods: {
+      logout() {
+      axios.post('/logout')
+        .then(response => {
+          // handle logout success, such as redirecting to login page
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      },
+
       updateTodoList(todoList) {
 
         // Convert list in a ids array

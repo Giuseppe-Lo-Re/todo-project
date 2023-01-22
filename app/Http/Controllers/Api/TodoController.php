@@ -10,12 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class TodoController extends Controller
 {
     public function index() {
-
-        // Find user
-        // $user = auth('api')->user(); 
           
         // Retrieve the currently authenticated user's id
-        $userId = 1;
+        $userId = 3;
         
         // Print all todos from Model
         $todos = Todo::where('user_id', $userId)->orderBy('order_position', 'ASC')->get();
@@ -34,7 +31,7 @@ class TodoController extends Controller
         $form_data = $request->all();
         
         // Find user id from db 
-        $userId = 1;
+        $userId = 3;
 
         // Print all todos from Model
         $todos = Todo::where('user_id', $userId)->get();

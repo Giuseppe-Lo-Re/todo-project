@@ -18,6 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Logout route for front-end button
+Route::middleware(['auth'])->group(function () {
+    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+});
+
 // Create new Todo
 Route::post('/save-new-todo', 'Api\TodoController@store');
 
