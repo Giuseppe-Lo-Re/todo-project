@@ -1946,6 +1946,7 @@ __webpack_require__.r(__webpack_exports__);
         })["catch"](function (error) {
           console.log(error);
         });
+        this.getTodoList();
       }
     },
     removeTodo: function removeTodo(id) {
@@ -1958,13 +1959,16 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    getTodoList: function getTodoList() {
+      var _this2 = this;
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/todos').then(function (response) {
+        _this2.todoList = response.data.results;
+      });
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/todos').then(function (response) {
-      _this2.todoList = response.data.results;
-    });
+    this.getTodoList();
   }
 });
 

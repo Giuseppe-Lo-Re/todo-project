@@ -63,7 +63,6 @@
       }
     },
     methods: {
-
       updateTodoList(id) {
         axios.post('/api/save-todo-order', {
           todos: this.todoList
@@ -88,7 +87,8 @@
           })
           .catch(error => {
             console.log(error)
-          })
+          });
+          this.getTodoList();
         }
       },
       
@@ -102,13 +102,18 @@
           .catch(error => {
             console.log(error)
           })
+      },
+
+      getTodoList() {
+        axios.get('/api/todos')
+        .then((response) => {
+          this.todoList = response.data.results;
+        })
       }
     },
+
     mounted() {
-      axios.get('/api/todos')
-      .then((response) => {
-          this.todoList = response.data.results;
-      });
+      this.getTodoList()
     }
   }
   </script>
