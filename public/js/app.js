@@ -1921,11 +1921,11 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       todoList: [],
-      newTodoText: ''
+      newTodo: ''
     };
   },
   methods: {
-    updateTodoList: function updateTodoList() {
+    updateTodoList: function updateTodoList(id) {
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/save-todo-order', {
         todos: this.todoList
       }).then(function (response) {
@@ -1937,16 +1937,27 @@ __webpack_require__.r(__webpack_exports__);
     },
     addTodo: function addTodo() {
       var _this = this;
-      if (this.newTodoText.trim().length > 0) {
-        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/save-new-todo ', {
-          description: this.newTodoText
+      if (this.newTodo.trim().length > 0) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/save-new-todo', {
+          description: this.newTodo
         }).then(function (response) {
           _this.todoList.push(response.data);
-          _this.newTodoText = '';
+          _this.newTodo = '';
         })["catch"](function (error) {
           console.log(error);
         });
       }
+    },
+    removeTodo: function removeTodo(id) {
+      this.todoList = this.todoList.filter(function (todo) {
+        return todo.id !== id;
+      });
+      console.log('sto chiamando il webservice', id);
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("/api/delete-todo/".concat(id)).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   },
   mounted: function mounted() {
@@ -2012,7 +2023,7 @@ var render = function render() {
       expression: "todoList"
     }
   }, [_c("div", {
-    staticClass: "mb-5"
+    staticClass: "mb-3"
   }, [_c("form", {
     staticClass: "form-inline my-2 my-lg-0",
     on: {
@@ -2027,8 +2038,8 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.newTodoText,
-      expression: "newTodoText"
+      value: _vm.newTodo,
+      expression: "newTodo"
     }],
     staticClass: "card-body",
     attrs: {
@@ -2037,12 +2048,12 @@ var render = function render() {
       "aria-label": "Aggiungi"
     },
     domProps: {
-      value: _vm.newTodoText
+      value: _vm.newTodo
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.newTodoText = $event.target.value;
+        _vm.newTodo = $event.target.value;
       }
     }
   }), _vm._v(" "), _c("button", {
@@ -2050,7 +2061,7 @@ var render = function render() {
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("Aggiungi")])])])]), _vm._v(" "), _vm._l(_vm.todoList, function (todo) {
+  }, [_vm._v("🔐 Salva")])])])]), _vm._v(" "), _vm._l(_vm.todoList, function (todo) {
     return _c("div", {
       key: todo.id,
       staticClass: "card mb-2"
@@ -2065,7 +2076,7 @@ var render = function render() {
           return _vm.removeTodo(todo.id);
         }
       }
-    }, [_vm._v("\n            Elimina\n        ")])])]);
+    }, [_vm._v("\n          Elimina\n        ")])])]);
   })], 2)], 1);
 };
 var staticRenderFns = [function () {

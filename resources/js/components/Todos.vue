@@ -13,15 +13,16 @@
     <draggable v-model="todoList" :options="{animation: 150}" @change="updateTodoList">
       
       <!-- new To Do Form -->
-      <div class="mb-5">
+      <div class="mb-3">
         <form @submit.prevent="addTodo" class="form-inline my-2 my-lg-0">
 
           <div class="card-body d-flex justify-content-between">
+
             <!-- Description input -->
             <input v-model="newTodo" class="card-body" type="search" placeholder="Aggiungi un nuovo todo" aria-label="Aggiungi">
 
             <!-- Add button -->
-            <button class="btn btn-success btn-sm ml-2" type="submit">Aggiungi</button>
+            <button class="btn btn-success btn-sm ml-2" type="submit">🔐 Salva</button>
           </div>
         </form>
       </div>
@@ -39,7 +40,7 @@
 
           <!-- Delete button -->
           <button @click="removeTodo(todo.id)" class="btn btn-danger btn-sm">
-              Elimina
+            Elimina
           </button>
         </div>
       </div>
@@ -78,8 +79,8 @@
     
       addTodo() {
         if (this.newTodo.trim().length > 0) {
-          axios.post('/api/save-new-todo ', {
-            description: this.newTodo,
+          axios.post('/api/save-new-todo', {
+            description: this.newTodo
           })
           .then(response => {
             this.todoList.push(response.data)
@@ -91,9 +92,10 @@
         }
       },
       
-      removeTodo() {
+      removeTodo(id) {
         this.todoList = this.todoList.filter(todo => todo.id !== id)
-        axios.delete(`/api/todo/${id}`)
+        console.log('sto chiamando il webservice', id)
+        axios.delete(`/api/delete-todo/${id}`)
           .then(response => {
             console.log(response)
           })
@@ -101,7 +103,6 @@
             console.log(error)
           })
       }
-
     },
     mounted() {
       axios.get('/api/todos')

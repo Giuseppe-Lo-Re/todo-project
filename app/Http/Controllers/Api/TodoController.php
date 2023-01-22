@@ -24,6 +24,15 @@ class TodoController extends Controller
         return response()->json($data);
     }
 
+    public function destroy($id)
+    {
+        // Find the todo to delete through id
+        $post_to_delete = Todo::findOrFail($id);
+        
+        // Delete the todo to delete
+        $post_to_delete->delete();
+    }
+
     public function store(Request $request)
     {
         // Collect all data from form
