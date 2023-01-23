@@ -50,7 +50,7 @@
         <div class="row">
 
             {{-- Side Nav --}}
-            <nav class="col-md-2 d-none d-md-block bg-primary sidebar py-4 ">
+            <nav class="col-md-2 d-none d-md-block bg-primary sidebar py-4 min-vh-100">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
