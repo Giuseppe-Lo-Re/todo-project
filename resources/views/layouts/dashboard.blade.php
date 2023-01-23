@@ -61,7 +61,7 @@
                             </a>
 
                             {{-- Console --}}
-                            <a class="nav-link active text-light" href="/console">
+                            <a class="nav-link active text-light" href="/">
                                 🕹️ Console
                             </a>
                         </li>
